@@ -34,11 +34,11 @@
 
             app.UseMvc();
 
-            //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            //{
-            //    serviceScope.ServiceProvider.GetService<StudentGradesContext>().Database.Migrate();
-            //    serviceScope.ServiceProvider.GetService<StudentGradesContext>().EnsureSeedData();
-            //}
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<StudentGradesContext>().Database.Migrate();
+                serviceScope.ServiceProvider.GetService<StudentGradesContext>().EnsureSeedData();
+            }
         }
     }
 }
