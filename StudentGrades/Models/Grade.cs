@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public string GradeNumber { get; set; }
+        public int GradeNumber { get; set; }
 
         public string Subject { get; set; }
 
