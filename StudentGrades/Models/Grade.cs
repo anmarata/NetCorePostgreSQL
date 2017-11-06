@@ -2,8 +2,6 @@
 {
     public class Grade
     {
-        public int Id { get; set; }
-
         public int GradeNumber { get; set; }
 
         public string Subject { get; set; }

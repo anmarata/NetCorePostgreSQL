@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
+    using StudentGrades.Dal.Configurations;
     using StudentGrades.Models;
 
     public class StudentGradesContext : DbContext
@@ -17,7 +18,8 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Student>(StudentConfiguration.ConfigureStudentEntity);
+            modelBuilder.Entity<Grade>(GradeConfiguration.ConfigureGradeEntity);
         }
 
         public void EnsureSeedData()

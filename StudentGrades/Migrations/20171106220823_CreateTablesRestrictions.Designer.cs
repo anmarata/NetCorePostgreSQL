@@ -11,9 +11,10 @@ using System;
 namespace StudentGrades.Migrations
 {
     [DbContext(typeof(StudentGradesContext))]
-    partial class StudentGradesContextModelSnapshot : ModelSnapshot
+    [Migration("20171106220823_CreateTablesRestrictions")]
+    partial class CreateTablesRestrictions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
