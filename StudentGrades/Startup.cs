@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-
-namespace StudentGrades
+﻿namespace StudentGrades
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using StudentGrades.Dal;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,6 +20,8 @@ namespace StudentGrades
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddEntityFrameworkNpgsql().AddDbContextPool<StudentGradesContext>(options => options.UseNpgsql(Configuration.GetConnectionString("StudentGradeContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +33,12 @@ namespace StudentGrades
             }
 
             app.UseMvc();
+
+            //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    serviceScope.ServiceProvider.GetService<StudentGradesContext>().Database.Migrate();
+            //    serviceScope.ServiceProvider.GetService<StudentGradesContext>().EnsureSeedData();
+            //}
         }
     }
 }
